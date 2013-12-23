@@ -15,6 +15,6 @@ get '/' do
 end
 
 get '/terms-and-conditions' do
-  'Hello world!'
+ erb :terms_and_conditions
 end
 
