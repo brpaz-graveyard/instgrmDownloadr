@@ -17,6 +17,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
+    rubyzip (1.1.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -29,4 +30,5 @@ PLATFORMS
 DEPENDENCIES
   instagram
   json
+  rubyzip
   sinatra

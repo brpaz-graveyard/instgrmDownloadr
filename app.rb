@@ -17,3 +17,4 @@ end
 get '/terms-and-conditions' do
   'Hello world!'
 end
+
