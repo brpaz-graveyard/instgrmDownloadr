@@ -7,3 +7,4 @@ gem "sinatra"
 gem "json"
 gem "instagram"
 gem "rubyzip"
+gem 'rack-flash3'
