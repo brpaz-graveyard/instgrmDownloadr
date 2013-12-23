@@ -1,6 +1,11 @@
+<%# if the user is not connected to instagram, show connect button. Otherwise show search form %>
 
-
-<div id="ig-connect">
+<% if session[:access_token] %>
+	 Logged in with access token: <%= session[:access_token] %>
+<% else %>
+ 	<div id="ig-connect">
 	<h4>connect to your Instagram account and start downloading!</h4>
-	<a id="btn-ig-connect" type="button" class="btn btn-lg btn-primary">Connect to instagram!</a>
+	<a id="btn-ig-connect" href="<%= url('/oauth/connect') %>" class="btn btn-lg btn-primary">Connect to instagram!</a>
 </div>
+<% end %>
+
