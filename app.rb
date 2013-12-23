@@ -30,12 +30,28 @@ end
 
 # home route
 get '/' do
+
+ if session[:access_token]
+ 	client = Instagram.client(:access_token => session[:access_token])
+	@user = client.user
+ end
+
  erb :index
 end
 
 #  search users route
-post '/search/users' do
- "search route"
+post '/search/user' do
+ @q = params[:q]
+
+ @users = {}
+
+ if @q != ''
+ 	client = Instagram.client(:access_token => session[:access_token])
+ 	@users = Instagram.user_search(@q)
+ 	puts @users.inspect
+ end
+
+ erb :_user_search_result, layout: false
 end
 
 # terms and conditions
@@ -59,10 +75,10 @@ get "/oauth/callback" do
   end
 
   session[:access_token] = response.access_token
-  redirect "/feed"
+  redirect "/"
 end
 
-get "/feed" do
+get "/user/:id/feed" do
   client = Instagram.client(:access_token => session[:access_token])
   user = client.user
 

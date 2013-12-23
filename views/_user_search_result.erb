@@ -1,0 +1,24 @@
+
+<div id="user-search-result-header">
+	search results for <%= @q %>
+</div>
+
+<div id="user-search-result-content">
+
+	<% unless @users.empty? %>
+		 <% @users.each do |user| %>
+		   <div class="user clearfix">
+		   	  <img class="user-profile-pic" src="<%= user.profile_picture %>"/>
+		      <div class="user-profile-data">
+		   		<div class="fullname"><a href="<%= url("/user/#{user.id}/feed") %>"><%= user.full_name %> </a></div>
+
+		   		<div class="username"><%= user.username %></div>
+		     </div>
+		   </div>
+		  <% end %>
+
+	  <% else %>
+	   <div class="no-results">no results found.</div>
+	  <% end %>
+	   	  
+</div>

@@ -65,6 +65,9 @@ h3{
 h4{
 	color: #8d969a;
 }
+
+
+
 a:hover{
 	color: #8d969a;
 	text-decoration: none;
@@ -87,7 +90,13 @@ a:hover{
 	display: none;
 }
 
+.text-center{
+	text-align: center;
+}
 
+.center{
+	margin: 0 auto;
+}
 /*
  * Header
  */
@@ -122,6 +131,70 @@ header #ig-logo{
 	display: block;
 	margin: 0 auto;
 }
+
+/*
+ * user search
+ */
+
+#user-search{
+	width: 505px;
+	margin: 50px auto;
+}
+
+#user-search-form{
+	margin: 0 auto 15px auto;
+}
+
+#user-search-form .form-control{
+	width: 400px;
+}
+
+#user-search-form input[type="button"]{
+	width: 100px;
+}
+
+#user-search-result-header{
+	font-size: 13px;
+	color: #8d969a;
+	margin-bottom: 20px;
+}
+
+#user-search-result .user{
+	border-bottom: 1px solid #8d969a;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
+}
+
+#user-search-result .user-profile-pic{
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin-right: 20px;
+}
+
+#user-search-result .user-profile-data{
+	 float: left;
+}
+
+#user-search-result .user-profile-data .fullname{
+	font-size: 20px;
+	font-weight: bold;
+	color: #0c6383;
+	margin-top: 15px;
+}
+
+#user-search-result .user-profile-data .username{
+	font-size: 13px;
+	font-weight: bold;
+	color: #8d969a;
+}
+
+
+#user-search .no-results{
+	font-size: 12px;
+	text-align: center;
+}
+
 /*
  * terms and conditions
  */
@@ -157,3 +230,13 @@ footer #copywrite{
 }
 
 
+/*
+ * others
+ */
+
+ .loader{
+ 	background: url('../images/ajax-loader.gif') no-repeat;
+ 	width: 45px;
+ 	height: 45px;
+ 	display: none;
+ }
