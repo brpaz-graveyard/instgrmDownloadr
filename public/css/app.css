@@ -60,7 +60,10 @@ h3{
 	font-weight: bold;
 	color: #0c6383;
 	margin-bottom: 20px;
+}
 
+h4{
+	color: #8d969a;
 }
 a:hover{
 	color: #8d969a;
@@ -106,6 +109,19 @@ header #ig-logo{
  * Content
  */
 
+#ig-connect{
+	margin: 50px auto;
+}
+
+#ig-connect h4{
+	text-align: center;
+	margin-bottom: 20px;
+}
+#btn-ig-connect{
+	width: 350px;
+	display: block;
+	margin: 0 auto;
+}
 /*
  * terms and conditions
  */
