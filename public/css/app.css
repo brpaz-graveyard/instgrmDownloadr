@@ -55,6 +55,13 @@ h2{
 	margin-top: 0px;
 }
 
+h3{
+	font-size: 22px;
+	font-weight: bold;
+	color: #0c6383;
+	margin-bottom: 20px;
+
+}
 a:hover{
 	color: #8d969a;
 	text-decoration: none;
@@ -84,7 +91,7 @@ a:hover{
 
 header{
 	padding-top: 15px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 header #ig-logo{
@@ -98,6 +105,15 @@ header #ig-logo{
 /*
  * Content
  */
+
+/*
+ * terms and conditions
+ */
+
+ ul#terms-and-conditions li{
+ 	margin-bottom: 15px;
+
+ }
 
 /*
  * Footer
