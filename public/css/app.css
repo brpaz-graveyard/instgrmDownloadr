@@ -1,0 +1,127 @@
+/*!
+ * Main css file for the application
+ * @author Bruno Paz <brunopaz@sapo.pt>
+ */
+
+
+ /*
+ * Body styles
+ */
+
+html,
+body {
+  height: 100%;  /* The html and body elements cannot have any padding or margin. */
+}
+
+body{
+
+}
+
+/*
+ * Page containers
+ */
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -80px;   /* Negative indent footer by its height */
+  padding: 0 0 80px;   /* Pad bottom by footer height */
+}
+
+.container{
+	width: 980px;
+}
+
+#main-content{
+
+}
+
+
+/*
+ * Typography
+ */
+
+h1{
+	font-size: 48px;
+	font-weight: bold;
+	color: #0c6383;
+	margin-bottom: 5px;
+}
+
+h2{
+	font-size: 20px;
+	color: #8d969a;
+	margin-top: 0px;
+}
+
+a:hover{
+	color: #8d969a;
+	text-decoration: none;
+}
+
+
+/*
+ * Helpers
+ */
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.hidden{
+	display: none;
+}
+
+
+/*
+ * Header
+ */
+
+header{
+	padding-top: 15px;
+	margin-bottom: 50px;
+}
+
+header #ig-logo{
+	background: url('../images/ig_logo.png') no-repeat;
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 10px 25px 0px 0px;
+}
+
+/*
+ * Content
+ */
+
+/*
+ * Footer
+ */
+footer {
+  height: 80px;
+  background-color: #0c6383;
+  color: #FFF;
+  padding-top: 20px;
+}
+
+footer a{
+	color: #FFF;
+}
+
+footer #footer-links{
+	text-align: center;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+footer #copywrite{
+	text-align: center;
+	font-size: 11px;
+}
+
+
