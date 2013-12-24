@@ -237,6 +237,11 @@ a#more-media{
 	display: block;
 	margin: 0 auto;
 }
+
+#media-loader{
+	margin: 20px auto 20px auto;
+}
+
 /*
  * terms and conditions
  */

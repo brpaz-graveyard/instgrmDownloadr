@@ -19,19 +19,11 @@
 <% unless @media.empty? %>
   	
   	<%= erb :_user_feed_actions_bar %>
+  	
 	<div id="media-container" class="clearfix">
-	 	<% @media.each_with_index do |item,index| %>
-	 		<div class="media-item <%= 'last' if (index +1) % 6 == 0 %>">
-	 			<a class="fancybox" rel="media-item" href="<%= item.images.standard_resolution.url %>"><img src="<%= item.images.thumbnail.url %>"/></a>
-		 		<div class="media-item-bottom">
-		 			<input name="media[]" type="checkbox" class="media-select" value="<%= item.images.standard_resolution.url %>" checked="checked"/>
-		 		</div>
-	 		</div>
-	 	<% end %>
-
+	 	<%= erb :_user_feed_items %>
 	</div>
 
-	<a id="more-media" class="btn btn-default">Load more ...</a>
 
 <% else %>
  	<div class="no-results">no results found</div>

@@ -45,8 +45,27 @@ $(function(){
    /**
     * users media pagination
     */
-   $('#more-media').on('click',function(){
+   $('#media-container').on('click','#more-media',function(e){
 
+   		var that = $(this);
+   		var jqxhr = $.ajax( {
+			url: that.attr('href'),
+			data: { 'next_max_id' : that.data('next-max-id')},
+			beforeSend: function(){
+        		$('#media-loader').show();
+    		}
+		})
+		  .done(function(response) {
+		  	$('.pager').remove();
+		    $('#media-container').append(response);
+		  })
+		  .fail(function() {
+		    alert( "error" );
+		  }).always(function(){
+		  	$('#media-loader').hide();
+		  });
+
+   		e.preventDefault();
    });
 
    /**

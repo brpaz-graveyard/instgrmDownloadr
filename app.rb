@@ -23,6 +23,7 @@ use Rack::Flash, :accessorize => [:notice, :error,:success], :sweep => true
 
 # configure instagram gem
 CALLBACK_URL = "http://localhost:4567/oauth/callback"
+MEDIA_ITEMS_PER_PAGE = 18
 
 Instagram.configure do |config|
   config.client_id = "5040d5170cc6421f941345455d33b550"
@@ -84,14 +85,23 @@ get "/user/:id/feed" do
   redirect to('/') unless session[:access_token]	
 
   client = Instagram.client(:access_token => session[:access_token])
+  puts params.inspect
+  # prepare the options hash to be sent to the api call.
+  options = { :count => MEDIA_ITEMS_PER_PAGE}
+  if params[:next_max_id]
+    options.merge!({ :max_id => params[:next_max_id] })
+  end
 
-  @media = Instagram.user_recent_media(params[:id]) 
-  puts JSON.pretty_generate(@media)
-  @next_page_limit = @media.pagination.next_max_id
-   #page_2 = Instagram.user_recent_media(777, :max_id => page_2_max_id ) unless page_2_max_id.nil?
+  @media = Instagram.user_recent_media(params[:id], options) 
+  @pagination = @media.pagination
 
-   erb :user_feed
-  
+  # if its an ajax request, we are doing pagination. return only the items view.
+  if request.xhr?
+     erb :_user_feed_items, :layout => false
+  else
+    erb :user_feed
+  end
+
 end
 
 
