@@ -36,13 +36,18 @@ Instagram.configure do |config|
   config.client_secret = "3997c52afc5847848ab7a351771f20d4"
 end
 
+before '/user/*' do
+   # redirect to index if access token is not set.
+  redirect to('/') unless session[:access_token]  
+end
+
 # home route
 get '/' do
 
- if session[:access_token]
- 	client = Instagram.client(:access_token => session[:access_token])
-	@user = client.user
- end
+  if session[:access_token]
+    client = Instagram.client(:access_token => session[:access_token])
+    @user = client.user
+  end
 
  erb :index
 end
@@ -76,23 +81,23 @@ end
 get "/oauth/callback" do
   response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
   
-  if !response.access_token
-  	flash[:error] = "An error occurred during instagram connect"
+  unless response.access_token
+  	flash[:error] = "An error ocurred when connecting to your instagram account"
   	erb :index
   end
 
   session[:access_token] = response.access_token
-  redirect "/"
+  redirect to('/')
+
+  
+
 end
 
 # user feed. Displays all the images from the user.
 get "/user/:id/feed" do
 
-  # redirect to index if access token is not set.
-  redirect to('/') unless session[:access_token]	
-
   client = Instagram.client(:access_token => session[:access_token])
-  puts params.inspect
+
   # prepare the options hash to be sent to the api call.
   options = { :count => MEDIA_ITEMS_PER_PAGE}
   if params[:next_max_id]
@@ -112,6 +117,7 @@ get "/user/:id/feed" do
 end
 
 
+# Downloads the selected files compressed in a zip folder.
 get '/download' do
 
   files = params[:media]
@@ -126,6 +132,7 @@ get '/download' do
       # creates a zip file containing all the selected pictures
       Zip::OutputStream.open(t.path) do |z|
 
+        # iterates over each selected file and add to the zip.
         files.each do |file|
           uri = URI.parse(file)
       
@@ -135,12 +142,17 @@ get '/download' do
 
       end
 
-        send_file t.path, :type => 'application/zip',
-                          :disposition => 'attachment',
-                          :filename => file_name
+      # sends the file for download
+      send_file t.path, :type => 'application/zip',
+                        :disposition => 'attachment',
+                        :filename => file_name
       t.close
   end
 
 end
 
+# handles errors
+not_found do
+  erb :'404'
+end
 
