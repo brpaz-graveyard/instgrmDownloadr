@@ -6,7 +6,7 @@
 		 <h3 id="welcome-message" class="text-center">Hello <%= @user.full_name %>!</h3>
 
 		 <%# search user %>
-		 <form id="user-search-form" action="<%= url('/search/user') %>" method="POST" class="form-inline">
+		 <form id="user-search-form" action="<%= url('/user/search') %>" method="POST" class="form-inline">
 		 	<input name="q" class="form-control" placeholder="instagram username" required="required"/> 
 		 	<input id="user-search-submit" type="button" class="btn btn-primary" value="search"/>
 		 </form>

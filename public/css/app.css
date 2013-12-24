@@ -34,7 +34,7 @@ body{
 }
 
 #main-content{
-
+	padding-bottom: 50px;
 }
 
 
@@ -195,6 +195,48 @@ header #ig-logo{
 	text-align: center;
 }
 
+/*
+ * user feed
+ */
+#media-container{
+	margin-bottom: 20px;
+}
+
+#media-container .media-item{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin-right: 9px;
+	margin-bottom: 50px;
+}
+
+#media-container .media-item.last{
+	margin-right: 0px;
+}
+
+#media-container #actions-bar{
+	width: 980px;
+	margin-bottom: 30px;
+}
+
+.media-item img{
+	margin-bottom: 10px;
+
+}
+#media-container .media-item-bottom{
+	margin: 0 auto;
+}
+
+.media-item input.media-select{
+	margin: 0 auto;
+	display: block;
+}
+
+a#more-media{
+	width: 250px;
+	display: block;
+	margin: 0 auto;
+}
 /*
  * terms and conditions
  */

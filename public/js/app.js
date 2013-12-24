@@ -41,4 +41,29 @@ $(function(){
 		  });
    });
 
+
+   /**
+    * users media pagination
+    */
+   $('#more-media').on('click',function(){
+
+   });
+
+   /**
+    * select all user media from feed for download.
+    */
+   $('#btn-select-all').on('click',function(e){
+   		$('.media-select').prop('checked',true);
+   		e.preventDefault();
+   });
+
+
+   /**
+    * deselect all user media from feed for download.
+    */
+   $('#btn-deselect-all').on('click',function(e){
+   		$('.media-select').prop('checked',false);
+   		e.preventDefault();
+   });
+
 });

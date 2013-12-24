@@ -40,7 +40,7 @@ get '/' do
 end
 
 #  search users route
-post '/search/user' do
+post '/user/search' do
  @q = params[:q]
 
  @users = {}
@@ -48,10 +48,9 @@ post '/search/user' do
  if @q != ''
  	client = Instagram.client(:access_token => session[:access_token])
  	@users = Instagram.user_search(@q)
- 	puts @users.inspect
  end
 
- erb :_user_search_result, layout: false
+ erb :_user_search_result, :layout => false
 end
 
 # terms and conditions
@@ -79,26 +78,19 @@ get "/oauth/callback" do
 end
 
 get "/user/:id/feed" do
+
+  # redirect to index if access token is not set.
+  redirect to('/') unless session[:access_token]	
+
   client = Instagram.client(:access_token => session[:access_token])
-  user = client.user
 
-  html = "<h1>#{user.username}'s recent photos</h1>"
-  for media_item in client.user_recent_media
-    html << "<img src='#{media_item.images.thumbnail.url}'>"
-  end
-  html
+  @media = Instagram.user_recent_media(params[:id]) 
+  puts JSON.pretty_generate(@media)
+  @next_page_limit = @media.pagination.next_max_id
+   #page_2 = Instagram.user_recent_media(777, :max_id => page_2_max_id ) unless page_2_max_id.nil?
+
+   erb :user_feed
+  
 end
 
 
-get "/test" do
-	client = Instagram.client(:access_token => session[:access_token])
-	user = client.user
-
-	html = "<h1>teste</h1>"
-
-	for media_item in  Instagram.user_recent_media("200956583") 
-    	html << "<img src='#{media_item.images.thumbnail.url}'>"
- 	end
-
-    html
-end
