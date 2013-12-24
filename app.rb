@@ -79,40 +79,53 @@ end
 
 # instagram api redirects to this url
 get "/oauth/callback" do
-  response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
-  
-  unless response.access_token
-  	flash[:error] = "An error ocurred when connecting to your instagram account"
-  	erb :index
+
+  begin
+
+    response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
+    
+    unless response.access_token
+    	flash[:error] = "An error ocurred when connecting to your instagram account"
+    	erb :index
+    end
+
+    session[:access_token] = response.access_token
+    redirect to('/')
+
+  rescue Exception => e
+    flash[:error] = "An error ocurred when connecting to your instagram account"
+    redirect to('/')
   end
-
-  session[:access_token] = response.access_token
-  redirect to('/')
-
-  
 
 end
 
 # user feed. Displays all the images from the user.
 get "/user/:id/feed" do
 
-  client = Instagram.client(:access_token => session[:access_token])
+  begin
 
-  # prepare the options hash to be sent to the api call.
-  options = { :count => MEDIA_ITEMS_PER_PAGE}
-  if params[:next_max_id]
-    options.merge!({ :max_id => params[:next_max_id] })
+    client = Instagram.client(:access_token => session[:access_token])
+
+    # prepare the options hash to be sent to the api call.
+    options = { :count => MEDIA_ITEMS_PER_PAGE}
+    if params[:next_max_id]
+      options.merge!({ :max_id => params[:next_max_id] })
+    end
+
+    @media = Instagram.user_recent_media(params[:id], options) 
+    @pagination = @media.pagination
+
+    # if its an ajax request, we are doing pagination. return only the items view.
+    if request.xhr?
+       erb :_user_feed_items, :layout => false
+    else
+      erb :user_feed
+    end
+
+  rescue Exception => e
+    erb :error, :locals => {:message => 'an errror ocurred when retrieving this users feed. Please check if you have permission to see this users content.'}
   end
 
-  @media = Instagram.user_recent_media(params[:id], options) 
-  @pagination = @media.pagination
-
-  # if its an ajax request, we are doing pagination. return only the items view.
-  if request.xhr?
-     erb :_user_feed_items, :layout => false
-  else
-    erb :user_feed
-  end
 
 end
 
