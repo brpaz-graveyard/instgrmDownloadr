@@ -11,6 +11,10 @@ require 'instagram'
 require 'json'
 require 'securerandom'
 require 'rack-flash'
+require 'zip'
+
+require 'uri'
+require "open-uri"
 
 # enable sessions so we can save the user access token
 use Rack::Session::Cookie, :key => 'rack.session',
@@ -81,6 +85,7 @@ get "/oauth/callback" do
   redirect "/"
 end
 
+# user feed. Displays all the images from the user.
 get "/user/:id/feed" do
 
   # redirect to index if access token is not set.
@@ -104,6 +109,37 @@ get "/user/:id/feed" do
     erb :user_feed
   end
 
+end
+
+
+get '/download' do
+
+  files = params[:media]
+
+  unless files.empty?
+
+      file_name = "#{SecureRandom.hex}.zip"
+
+      # creates a temporary file
+      t = Tempfile.new(file_name)
+
+      # creates a zip file containing all the selected pictures
+      Zip::OutputStream.open(t.path) do |z|
+
+        files.each do |file|
+          uri = URI.parse(file)
+      
+          z.put_next_entry(File.basename(uri.path)) # get the filename
+          z.print open(file).read # read the image file from the url
+        end
+
+      end
+
+        send_file t.path, :type => 'application/zip',
+                          :disposition => 'attachment',
+                          :filename => file_name
+      t.close
+  end
 
 end
 
