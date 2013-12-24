@@ -17,7 +17,7 @@ require 'uri'
 require "open-uri"
 
 # enable sessions so we can save the user access token
-use Rack::Session::Cookie, :key => 'rack.session',
+use Rack::Session::Cookie, :key => 'igd',
                            :expire_after => 86400 , # In seconds (1 day)
                            :secret => '8b0f82c6ef056fdd82f5761b540441d86442c060'
 
@@ -32,8 +32,8 @@ SEARCH_LIMIT = 10
 
 # configure instagram gem
 Instagram.configure do |config|
-  config.client_id = "5040d5170cc6421f941345455d33b550"
-  config.client_secret = "3997c52afc5847848ab7a351771f20d4"
+  config.client_id      = "5040d5170cc6421f941345455d33b550"
+  config.client_secret  = "3997c52afc5847848ab7a351771f20d4"
 end
 
 before '/user/*' do
@@ -93,7 +93,7 @@ get "/oauth/callback" do
     redirect to('/')
 
   rescue Exception => e
-    flash[:error] = "An error ocurred when connecting to your instagram account"
+    flash[:error] = "An error ocurred when connecting to your instagram account."
     redirect to('/')
   end
 
