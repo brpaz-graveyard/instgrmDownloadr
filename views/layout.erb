@@ -9,9 +9,14 @@
     <link href="<%= url('css/bootstrap-theme.css') %>" rel="stylesheet" type="text/css"/>
     <link href="<%= url('/css/app.css') %>" rel="stylesheet" type="text/css" />
 
+    <%= yield_content :stylesheets %>
+
     <script src="<%= url('/js/jquery.js') %>"></script>
     <script src="<%= url('/js/bootstrap.js') %>"></script>
+
     <script src="<%= url('/js/app.js') %>"></script>
+
+    <%= yield_content :javascripts %>
 
     <link rel="shortcut icon" href="/favicon.ico">
   </head>

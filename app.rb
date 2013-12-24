@@ -6,6 +6,7 @@ require 'bundler/setup'
 
 # next you'll have to do the gem requiring yourself
 require 'sinatra'
+require "sinatra/content_for"
 require 'instagram'
 require 'json'
 require 'securerandom'

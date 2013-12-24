@@ -1,4 +1,17 @@
 
+<% content_for :stylesheets do %>
+	<link rel="stylesheet" href="<%= url('/js/fancybox/jquery.fancybox.css') %>" type="text/css" media="screen" />
+<% end %>
+
+<% content_for :javascripts do %>
+	<script type="text/javascript" src="<%= url('/js/fancybox/jquery.fancybox.pack.js') %>"></script>
+	
+	<script>
+		$(function(){
+	   		$(".fancybox").fancybox();
+		});
+	</script>
+<% end %>
 
 
 <h3>media from user</h3>
@@ -9,7 +22,7 @@
 	<div id="media-container" class="clearfix">
 	 	<% @media.each_with_index do |item,index| %>
 	 		<div class="media-item <%= 'last' if (index +1) % 6 == 0 %>">
-	 			<img src="<%= item.images.thumbnail.url %>"/>
+	 			<a class="fancybox" rel="media-item" href="<%= item.images.standard_resolution.url %>"><img src="<%= item.images.thumbnail.url %>"/></a>
 		 		<div class="media-item-bottom">
 		 			<input name="media[]" type="checkbox" class="media-select" value="<%= item.images.standard_resolution.url %>" checked="checked"/>
 		 		</div>
