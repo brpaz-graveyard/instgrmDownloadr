@@ -3,6 +3,7 @@
 <% if session[:access_token] && !@user.nil? %>
 	
 	<div id="user-search">
+
 		 <h3 id="welcome-message" class="text-center">Hello <%= @user.full_name %>!</h3>
 
 		 <%# search user %>
@@ -12,6 +13,7 @@
 		 </form>
 
 		 <div id="user-search-loader" class="loader center"></div>
+		 
 		 <div id="user-search-result">
  			<%# content loaded via ajax on form submit %>
 		 </div>
@@ -20,7 +22,7 @@
 
 <% else %>
  	<div id="ig-connect">
-		<h4>connect to your Instagram account and start downloading!</h4>
+		<h4>connect to your Instagram account.</h4>
 		<a id="btn-ig-connect" href="<%= url('/oauth/connect') %>" class="btn btn-lg btn-primary">Connect to instagram!</a>
 	</div>
 <% end %>

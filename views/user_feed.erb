@@ -1,4 +1,3 @@
-
 <% content_for :stylesheets do %>
 	<link rel="stylesheet" href="<%= url('/js/fancybox/jquery.fancybox.css') %>" type="text/css" media="screen" />
 <% end %>
@@ -13,17 +12,15 @@
 	</script>
 <% end %>
 
-
-<h3>media from user</h3>
+<h3>user feed</h3>
 
 <% unless @media.empty? %>
   	
   	<%= erb :_user_feed_actions_bar %>
-  	
+
 	<div id="media-container" class="clearfix">
 	 	<%= erb :_user_feed_items %>
 	</div>
-
 
 <% else %>
  	<div class="no-results">no results found</div>

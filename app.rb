@@ -21,10 +21,12 @@ use Rack::Session::Cookie, :key => 'rack.session',
 # see https://github.com/treeder/rack-flash
 use Rack::Flash, :accessorize => [:notice, :error,:success], :sweep => true
 
-# configure instagram gem
+# application constants
 CALLBACK_URL = "http://localhost:4567/oauth/callback"
 MEDIA_ITEMS_PER_PAGE = 18
+SEARCH_LIMIT = 10
 
+# configure instagram gem
 Instagram.configure do |config|
   config.client_id = "5040d5170cc6421f941345455d33b550"
   config.client_secret = "3997c52afc5847848ab7a351771f20d4"
@@ -47,9 +49,9 @@ post '/user/search' do
 
  @users = {}
 
- if @q != ''
+ unless @q.empty?
  	client = Instagram.client(:access_token => session[:access_token])
- 	@users = Instagram.user_search(@q)
+ 	@users = Instagram.user_search(@q, :count => SEARCH_LIMIT)
  end
 
  erb :_user_search_result, :layout => false
@@ -101,6 +103,7 @@ get "/user/:id/feed" do
   else
     erb :user_feed
   end
+
 
 end
 

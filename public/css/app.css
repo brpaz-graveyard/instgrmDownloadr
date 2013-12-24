@@ -126,6 +126,7 @@ header #ig-logo{
 	text-align: center;
 	margin-bottom: 20px;
 }
+
 #btn-ig-connect{
 	width: 350px;
 	display: block;
@@ -189,8 +190,7 @@ header #ig-logo{
 	color: #8d969a;
 }
 
-
-#user-search .no-results{
+.no-results{
 	font-size: 12px;
 	text-align: center;
 }
@@ -207,7 +207,7 @@ header #ig-logo{
 	width: 150px;
 	height: 150px;
 	margin-right: 9px;
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 }
 
 #media-container .media-item.last{
@@ -221,9 +221,9 @@ header #ig-logo{
 
 .media-item img{
 	margin-bottom: 10px;
-
 }
-#media-container .media-item-bottom{
+
+.media-item .media-item-bottom{
 	margin: 0 auto;
 }
 
@@ -232,15 +232,12 @@ header #ig-logo{
 	display: block;
 }
 
-a#more-media{
+a#show-more{
 	width: 250px;
 	display: block;
 	margin: 0 auto;
 }
 
-#media-loader{
-	margin: 20px auto 20px auto;
-}
 
 /*
  * terms and conditions

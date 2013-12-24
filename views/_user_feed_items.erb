@@ -12,11 +12,11 @@
 <% end %>
 </div>
 
-<div class="pager">
+
 <% unless @pagination.next_max_id.nil? %>
+<div class="pager">
+	<div id="media-loader" class="loader center"></div>
 
-	<div id="media-loader" class="loader"></div>
-
-	<a id="more-media" href='<%= url("/user/#{params[:id]}/feed") %>' class="btn btn-default" data-next-max-id="<%= @pagination.next_max_id %>">Load more ...</a>
+	<a id="show-more" href='<%= url("/user/#{params[:id]}/feed") %>' class="btn btn-default" data-next-max-id="<%= @pagination.next_max_id %>">Load more ...</a>
 </div>
 <% end %>

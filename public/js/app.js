@@ -45,13 +45,14 @@ $(function(){
    /**
     * users media pagination
     */
-   $('#media-container').on('click','#more-media',function(e){
+   $('#media-container').on('click','#show-more',function(e){
 
    		var that = $(this);
    		var jqxhr = $.ajax( {
 			url: that.attr('href'),
 			data: { 'next_max_id' : that.data('next-max-id')},
 			beforeSend: function(){
+				$('#show-more').hide();
         		$('#media-loader').show();
     		}
 		})
