@@ -122,6 +122,9 @@ $(function(){
     * downloads all the selected media
     */
    $('#btn-download').on('click',function(e){
+   		
+   		e.preventDefault();
+   		
    		var selectedMedia = $('.media-select:checked');
    		var url = $(this).attr('href');
   		

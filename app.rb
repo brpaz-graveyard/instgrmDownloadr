@@ -32,8 +32,8 @@ SEARCH_LIMIT = 10
 
 # configure instagram gem
 Instagram.configure do |config|
-  config.client_id      = "5040d5170cc6421f941345455d33b550"
-  config.client_secret  = "3997c52afc5847848ab7a351771f20d4"
+  config.client_id      = ""
+  config.client_secret  = ""
 end
 
 before '/user/*' do
@@ -132,7 +132,7 @@ get '/download' do
 
   files = params[:media]
 
-  unless files.empty?
+  unless files.nil?
 
       file_name = "#{SecureRandom.hex}.zip"
 
@@ -157,6 +157,9 @@ get '/download' do
                         :disposition => 'attachment',
                         :filename => file_name
       t.close
+  else
+    flash[:error] = "no images selected to download"
+    redirect to(request.referer)
   end
 
 end
