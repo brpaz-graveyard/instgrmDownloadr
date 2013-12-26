@@ -1,7 +1,7 @@
 
 # Instgrm Downloadr
 
-This tool allows you to batch download photos from any instagram user which you have acess (public or friend).
+This application allows you to batch download photos from any instagram user which you have access (public or friend).
 
 
 ## Install
@@ -79,3 +79,5 @@ you can make this tool better, just open a issue with your suggestions and/or cr
 
 Instagram have a very strict terms of use. Before using the application, be sure to check http://instagram.com/legal/terms/
 I have done this application for personal use and as an oportunity to learn a new language. I am not responsible for your actions using this application.
+
+For detailed information, please see http://localhost:4567/terms-and-conditions
