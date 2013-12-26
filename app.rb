@@ -32,8 +32,8 @@ SEARCH_LIMIT = 10
 
 # configure instagram gem
 Instagram.configure do |config|
-  config.client_id      = ""
-  config.client_secret  = ""
+  config.client_id      = "3f006cc5d0bf4a25b4a09fa441b0e519"
+  config.client_secret  = "9b49a6c2c02e42f4909cb591a0684698"
 end
 
 before '/user/*' do
