@@ -59,7 +59,6 @@ post '/user/search' do
  @users = {}
 
  unless @q.empty?
- 	client = Instagram.client(:access_token => session[:access_token])
  	@users = Instagram.user_search(@q, :count => SEARCH_LIMIT)
  end
 
@@ -104,10 +103,8 @@ get "/user/:id/feed" do
 
   begin
 
-    client = Instagram.client(:access_token => session[:access_token])
-
     # prepare the options hash to be sent to the api call.
-    options = { :count => MEDIA_ITEMS_PER_PAGE}
+    options = { :count => MEDIA_ITEMS_PER_PAGE,:access_token => session[:access_token]}
     if params[:next_max_id]
       options.merge!({ :max_id => params[:next_max_id] })
     end
@@ -117,7 +114,7 @@ get "/user/:id/feed" do
 
     # if its an ajax request, we are doing pagination. return only the items view.
     if request.xhr?
-       erb :_user_feed_items, :layout => false
+      erb :_user_feed_items, :layout => false
     else
       erb :user_feed
     end
