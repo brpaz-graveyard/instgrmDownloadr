@@ -3,6 +3,7 @@
 
 This application allows you to batch download photos from any instagram user which you have access (public or friend).
 
+You can see the working application at http://instgrmdownloadr.herokuapp.com/
 
 ## Install
 
