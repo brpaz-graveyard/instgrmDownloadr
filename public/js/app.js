@@ -125,10 +125,7 @@ $(function(){
    		
    		e.preventDefault();
    		
-   		var selectedMedia = $('.media-select:checked');
-   		var url = $(this).attr('href');
-  		
-   		window.location = url + '?' + selectedMedia.serialize();
+   		$('form#media').submit();
 
    });
 

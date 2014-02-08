@@ -128,7 +128,7 @@ end
 
 
 # Downloads the selected files compressed in a zip folder.
-get '/download' do
+post '/download' do
 
   files = params[:media]
 

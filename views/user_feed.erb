@@ -18,9 +18,11 @@
   	
   	<%= erb :_user_feed_actions_bar %>
 
-	<div id="media-container" class="clearfix">
-	 	<%= erb :_user_feed_items %>
-	</div>
+  	<form id="media" method="POST" action="/download">
+		<div id="media-container" class="clearfix">
+		 	<%= erb :_user_feed_items %>
+		</div>
+	</form>
 
 <% else %>
  	<div class="no-results">no results found</div>
