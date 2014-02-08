@@ -25,6 +25,7 @@ use Rack::Session::Cookie, :key => 'igd',
 # see https://github.com/treeder/rack-flash
 use Rack::Flash, :accessorize => [:notice, :error,:success], :sweep => true
 
+
 # application constants
 CALLBACK_URL = "http://localhost:4567/oauth/callback"
 MEDIA_ITEMS_PER_PAGE = 18
